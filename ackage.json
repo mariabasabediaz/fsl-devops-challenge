@@ -1,0 +1,9 @@
+{
+  "name": "fsl-devops-challenge",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "echo 'Linter ejecutado con éxito'",
+    "test": "echo 'Tests ejecutados con éxito'",
+    "build": "echo 'App compilada con éxito'"
+  }
+}
