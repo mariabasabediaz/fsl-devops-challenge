@@ -1,0 +1,29 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [ main ] # Se activa con cualquier PR a main
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: 1. Install dependencies
+        run: npm install
+
+      - name: 2. Linter (ESLint)
+        run: npm run lint
+
+      - name: 3. Test (Jest)
+        run: CI=true npm run test
+
+      - name: 4. Build
+        run: npm run build
