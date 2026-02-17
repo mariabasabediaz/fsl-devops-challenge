@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ main ]
   push:
-    branches: [ main ] # También queremos que corra al hacer merge a main
+    branches: [ main ]
 
 jobs:
   continuous-integration:
@@ -17,16 +17,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm' # <--- ¡Añade esto para velocidad!
+          # Eliminamos la línea de cache para evitar el error de "lock file not found"
 
       - name: 1. Install dependencies
-        run: npm ci # Usa 'ci' en lugar de 'install' para pipelines
+        run: npm install
 
       - name: 2. Linter (ESLint)
-        run: npm run lint --if-present
+        run: npm run lint
 
       - name: 3. Test (Jest)
-        run: CI=true npm run test
+        run: npm run test
 
       - name: 4. Build
-        run: npm run build --if-present
+        run: npm run build
